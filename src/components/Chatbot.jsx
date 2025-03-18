@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { Groq } from "groq-sdk";
-import { TiMicrophone } from "react-icons/ti";
+import { TiMicrophone } from "react-icons";
 import { IoMdSend } from "react-icons/io";
 
 const FloatingChatbot = () => {
