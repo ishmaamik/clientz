@@ -21,7 +21,7 @@ function Workspace() {
   useEffect(() => {
     async function fetchDetails() {
       try {
-        const response = await axios.get(`http://localhost:3000/problem/${problemId}`);
+        const response = await axios.get(`https://serverz-78ek.onrender.com/problem/${problemId}`);
         console.log(response.data); // Check if the response structure matches expectations
         setDetails(response.data); // Adjust based on response structure
       } catch (error) {

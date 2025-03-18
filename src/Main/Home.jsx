@@ -244,7 +244,7 @@
 
 //         if (userId) {
 //           const response = await fetch(
-//             `http://localhost:3000/api/progress/get-progress/${userId}`
+//             `https://serverz-78ek.onrender.com/api/progress/get-progress/${userId}`
 //           );
 //           const data = await response.json();
 //           if (response.ok) {
@@ -765,7 +765,7 @@ function Home() {
 
         if (userId) {
           const response = await fetch(
-            `http://localhost:3000/api/progress/get-progress/${userId}`
+            `https://serverz-78ek.onrender.com/api/progress/get-progress/${userId}`
           );
           const data = await response.json();
           if (response.ok) {

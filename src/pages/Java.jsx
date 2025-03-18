@@ -73,7 +73,7 @@ export default function JavaLanguagePage() {
     const userId = currentUser ? currentUser._id : null;
 
     if (userId) {
-      fetch(`http://localhost:3000/api/progress/jget-progress/${userId}`)
+      fetch(`https://serverz-78ek.onrender.com/api/progress/jget-progress/${userId}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.progress) {
@@ -101,7 +101,7 @@ export default function JavaLanguagePage() {
       console.log("Sending request to mark lesson as read...");
       console.log("User ID:", userId, "Lesson ID:", lessonId); // Debugging the IDs
 
-      fetch("http://localhost:3000/api/progress/jmark-as-read", {
+      fetch("https://serverz-78ek.onrender.com/api/progress/jmark-as-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),

@@ -151,7 +151,7 @@ export default function CLanguagePage() {
       const fetchProgress = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3000/api/progress/get-progress/${userId}`
+            `https://serverz-78ek.onrender.com/api/progress/get-progress/${userId}`
           );
           const data = await response.json();
 

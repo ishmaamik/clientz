@@ -143,7 +143,7 @@ export default function CDynamicMemory() {
     const userId = currentUser ? currentUser._id : null;
 
     if (userId) {
-      fetch("http://localhost:3000/api/progress/mark-as-read", {
+      fetch("https://serverz-78ek.onrender.com/api/progress/mark-as-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),

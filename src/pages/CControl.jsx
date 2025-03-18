@@ -179,7 +179,7 @@ for (int i = 0; i < 5; i++) {
 
     if (userId) {
       // Update progress by making a POST request to mark the lesson as read
-      fetch("http://localhost:3000/api/progress/mark-as-read", {
+      fetch("https://serverz-78ek.onrender.com/api/progress/mark-as-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),

@@ -165,7 +165,7 @@ This creates a 2x3 array with 2 rows and 3 columns.`,
 
     if (userId) {
       // Update progress by making a POST request to mark the lesson as read
-      fetch("http://localhost:3000/api/progress/mark-as-read", {
+      fetch("https://serverz-78ek.onrender.com/api/progress/mark-as-read", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, lessonId }),
