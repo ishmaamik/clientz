@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import html2canvas from "html2canvas";
+import SideButtons from "../components/SideButtons";
 
 const CertificatePage = () => {
   const [showCertificate, setShowCertificate] = useState(true);
@@ -109,6 +110,7 @@ const Certificate = ({ onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <SideButtons/>
       <div className="bg-white rounded-lg max-w-4xl w-full p-6">
         <div
           id="certificate"
