@@ -139,7 +139,7 @@ const CommunityPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("/api/blog");
+        const response = await fetch("https://serverz-78ek.onrender.com/api/blog");
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
         }
@@ -211,7 +211,7 @@ const CommunityPage = () => {
     }
 
     try {
-      const response = await fetch("/api/blog", {
+      const response = await fetch("https://serverz-78ek.onrender.com/api/blog", {
         method: "POST",
         body: formData,
       });

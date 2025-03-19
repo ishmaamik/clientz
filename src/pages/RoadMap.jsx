@@ -625,7 +625,7 @@ const RoadmapForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/roadmap/generate", {
+      const response = await axios.post("https://serverz-78ek.onrender.com/api/roadmap/generate", {
         userId: currentUser._id,
         ...formData,
       });

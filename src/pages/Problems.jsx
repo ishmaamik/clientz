@@ -351,7 +351,7 @@ const Problems = () => {
 
   const fetchContestProgress = async () => {
     try {
-      const response = await fetch(`/api/contest/progress/${currentUser._id}`);
+      const response = await fetch(`https://serverz-78ek.onrender.com/api/contest/progress/${currentUser._id}`);
       const data = await response.json();
 
       if (data.success) {
@@ -434,7 +434,7 @@ const Problems = () => {
       result = verdicts[verdicts.length - 1];
 
       // Now update the contest progress
-      const response = await fetch("/api/contest/progress", {
+      const response = await fetch("https://serverz-78ek.onrender.com/api/contest/progress", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -482,7 +482,7 @@ const Problems = () => {
       setStats(updatedStats);
 
       // Optionally, increment totalAttempted (if you want this count incremented in the catch block too)
-      const contestUpdateResponse = await fetch("/api/contest/progress", {
+      const contestUpdateResponse = await fetch("https://serverz-78ek.onrender.com/api/contest/progress", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

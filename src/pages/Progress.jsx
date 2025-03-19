@@ -29,7 +29,7 @@ function Progress() {
     const fetchRecentActivity = async () => {
       try {
         
-        const response = await fetch(`/api/contest/recent-activity/${userId}`);
+        const response = await fetch(`https://serverz-78ek.onrender.com/api/contest/recent-activity/${userId}`);
         const data = await response.json();
 
         if (data.success) {
@@ -48,7 +48,7 @@ function Progress() {
 
   const fetchContestProgress = async () => {
     try {
-      const response = await fetch(`/api/contest/progress/${currentUser._id}`);
+      const response = await fetch(`https://serverz-78ek.onrender.com/api/contest/progress/${currentUser._id}`);
       const data = await response.json();
 
       if (data.success) {

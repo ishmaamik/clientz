@@ -201,7 +201,7 @@ const HeatMap2 = () => {
 
   const fetchContestProgress = async () => {
     try {
-      const response = await fetch(`/api/contest/progress/${userId}`);
+      const response = await fetch(`https://serverz-78ek.onrender.com/api/contest/progress/${userId}`);
       const data = await response.json();
 
       if (

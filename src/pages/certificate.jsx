@@ -50,7 +50,7 @@ const Certificate = ({ onClose }) => {
       }
 
       try {
-        const response = await fetch(`/api/contest/progress/${userId}`);
+        const response = await fetch(`https://serverz-78ek.onrender.com/api/contest/progress/${userId}`);
         const data = await response.json();
 
         if (data.success) {

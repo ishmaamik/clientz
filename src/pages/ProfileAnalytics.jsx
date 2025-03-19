@@ -61,7 +61,7 @@ export default function Profile() {
 
   const fetchRunData = async () => {
     try {
-      const res = await fetch(`/api/run?userId=${currentUser._id}`);
+      const res = await fetch(`https://serverz-78ek.onrender.com/api/run?userId=${currentUser._id}`);
       const data = await res.json();
       console.log("Run Data from API:", data);
 

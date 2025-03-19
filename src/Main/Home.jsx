@@ -654,7 +654,7 @@ function Home() {
 
   const fetchRunData = async () => {
     try {
-      const res = await fetch(`/api/run?userId=${currentUser._id}`);
+      const res = await fetch(`https://serverz-78ek.onrender.com/api/run?userId=${currentUser._id}`);
       const data = await res.json();
       if (Array.isArray(data)) {
         setRunData(data);

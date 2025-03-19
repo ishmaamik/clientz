@@ -117,7 +117,7 @@ const CollabEditor = ({ roomId, username }) => {
             <div className="h-[calc(100vh-6rem)]">
               <JitsiMeeting
                 domain="meet.jit.si"
-                roomName={`unisphere-${roomId}`}
+                roomName={`CodeEra-${roomId}`}
                 userInfo={{
                   displayName: username,
                 }}

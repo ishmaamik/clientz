@@ -106,7 +106,7 @@ const RoomPage = () => {
     setIsLoading(true);
     try {
       // Execute the code
-      const executionResponse = await axios.post("/api/execute", {
+      const executionResponse = await axios.post("https://serverz-78ek.onrender.com/api/execute", {
         script: code,
         language: language,
         input: input,
@@ -123,7 +123,7 @@ const RoomPage = () => {
 
       // Save run details
       try {
-        await axios.post("/api/run", {
+        await axios.post("https://serverz-78ek.onrender.com/api/run", {
           userId: currentUser._id,
           date: formattedDate,
           language,
