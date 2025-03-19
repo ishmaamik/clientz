@@ -11,6 +11,7 @@ const Collab = () => {
 
   return (
     <div>
+      
       {!roomInfo ? (
         <RoomForm onJoinRoom={handleJoinRoom} />
       ) : (

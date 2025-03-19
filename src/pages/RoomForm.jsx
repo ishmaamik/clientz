@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { FaUsers, FaPlus, FaDoorOpen } from "react-icons/fa";
+import SideButtons from "../components/SideButtons";
 
 const RoomForm = ({ onJoinRoom }) => {
   const [formData, setFormData] = useState({
@@ -51,6 +52,7 @@ const RoomForm = ({ onJoinRoom }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-white to-yellow-50 dark:from-[#2c2c2c] dark:to-black py-12 px-4 sm:px-6 lg:px-8">
+      <SideButtons/>
       <div className="max-w-md mx-auto bg-white dark:bg-yellow-400/10 rounded-xl shadow-2xl overflow-hidden">
         <div className="px-8 pt-6 pb-8">
           <div className="text-center mb-8">
