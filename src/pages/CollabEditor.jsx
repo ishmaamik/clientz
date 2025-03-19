@@ -7,6 +7,8 @@ import Whiteboard from "./Whiteboard";
 import { JitsiMeeting } from "@jitsi/react-sdk";
 import { motion } from "framer-motion";
 
+import CollabCompiler from "./CollabCompiler";
+import SideButtons from "../components/SideButtons";
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
   [{ font: [] }],
@@ -20,6 +22,42 @@ const TOOLBAR_OPTIONS = [
   ["clean"],
 ];
 
+// Language snippets for different languages
+const languageExamples = {
+  c: `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    return 0;
+}`,
+  cpp: `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello, World!" << endl;
+    return 0;
+}`,
+  java: `public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}`,
+  python3: `print("Hello, World!")`,
+  javascript: `console.log("Hello, World!");`,
+  typescript: `const greeting: string = "Hello, World!";
+console.log(greeting);`,
+  rust: `fn main() {
+    println!("Hello, World!");
+}`,
+  go: `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}`,
+};
+
 const CollabEditor = ({ roomId, username }) => {
   const editorRef = useRef(null);
   const socketRef = useRef(null);
@@ -28,7 +66,8 @@ const CollabEditor = ({ roomId, username }) => {
   const [isCopied, setIsCopied] = useState(false);
   const [saving, setSaving] = useState(false);
   const [editorType, setEditorType] = useState("text"); // 'text' or 'whiteboard'
-
+  const [code, setCode] = useState("");
+   const [language, setLanguage] = useState("python3");
   const copyRoomId = async () => {
     try {
       await navigator.clipboard.writeText(roomId);
@@ -38,6 +77,15 @@ const CollabEditor = ({ roomId, username }) => {
       console.error("Failed to copy room ID:", err);
     }
   };
+
+  const handleEditorChange = (value) => {
+    setCode(value);
+    if (socketRef.current) {
+      socketRef.current.emit("send-changes", { delta: value, roomId });
+    }
+  };
+
+ 
 
   useEffect(() => {
     if (!editorRef.current) return;
@@ -88,6 +136,12 @@ const CollabEditor = ({ roomId, username }) => {
       setTimeout(() => setSaving(false), 1000);
     };
 
+    const handleLanguageChange = (event) => {
+      const selectedLanguage = event.target.value;
+      setLanguage(selectedLanguage);
+      setCode(languageExamples[selectedLanguage]);
+    };
+
     quillRef.current.on("text-change", handleTextChange);
 
     return () => {
@@ -102,19 +156,20 @@ const CollabEditor = ({ roomId, username }) => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-100 via-white to-yellow-50 dark:from-[#18181b] dark:to-black py-8 px-6 sm:px-8 lg:px-10">
+      <SideButtons/>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-[95%] mx-auto"
       >
-        <div className="flex gap-6">
+        <div className="flex gap-6 ml-12">
           {/* Video Conference Section */}
           <motion.div
             initial={{ x: -20 }}
             animate={{ x: 0 }}
-            className="w-1/3 bg-white dark:bg-transparent rounded-2xl shadow-[0_20px_50px_rgba(237,211,14,0.5)] overflow-hidden border border-yellow-100"
+            className="w-1/2 bg-white dark:bg-transparent rounded-2xl shadow-[0_20px_50px_rgba(237,211,14,0.5)] overflow-hidden border border-yellow-100"
           >
-            <div className="h-[calc(100vh-6rem)]">
+            <div className="h-[calc(100vh-0rem)]">
               <JitsiMeeting
                 domain="meet.jit.si"
                 roomName={`CodeEra-${roomId}`}
@@ -156,7 +211,7 @@ const CollabEditor = ({ roomId, username }) => {
           <motion.div
             initial={{ x: 20 }}
             animate={{ x: 0 }}
-            className="w-2/3 bg-whiterounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
+            className="w-10/11 bg-whiterounded-2xl shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] overflow-hidden border border-yellow-100"
           >
             {/* Header Section */}
             <div className="px-8 py-6 border-b border-yellow-200 bg-gradient-to-r from-white via-yellow-50 to-white">
@@ -253,7 +308,9 @@ const CollabEditor = ({ roomId, username }) => {
 
             {/* Editor Container */}
             <div className="relative bg-white p-4">
-              {editorType === "text" ? (
+              {editorType === "codeEditor" ? (
+                <CollabCompiler roomId={roomId} username={username}/>
+              ) : editorType === "text" ? (
                 <div
                   ref={editorRef}
                   className="min-h-[calc(100vh-300px)] bg-white rounded-xl"
@@ -264,7 +321,6 @@ const CollabEditor = ({ roomId, username }) => {
                 </div>
               )}
             </div>
-
             {/* Status Footer */}
             <div className="px-8 py-4 bg-gradient-to-r from-yellow-50 via-white to-yellow-50 border-t border-yellow-100">
               <motion.p
