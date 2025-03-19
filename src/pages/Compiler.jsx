@@ -51,7 +51,7 @@ func main() {
 };
 
 export default function CodeEditor() {
-  const [code, setCode] = useState(languageExamples.python3);
+  const [code, setCode] = useState(``);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
   const [groqAnalysis, setGroqAnalysis] = useState("");
